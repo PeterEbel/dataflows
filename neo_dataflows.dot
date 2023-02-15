@@ -140,23 +140,25 @@ digraph graph_name {
 
     neo_pm -> neo_alfa_core [label = "Partner\nMaster Data"];
     neo_pm -> neo_cm [label = "Partner\nMaster Data"];
+    neo_pm -> neo_bm [label = "Partner\nMaster Data"];
     neo_pm -> neo_bd_pm [label = "Partner\nMaster Data"];
     neo_bd_pm -> sf [label = "Partner\nMaster Data"];
     neo_bm -> neo_bd_bm [label = "Bonus\nAgreements"];
     neo_bd_bm -> neo_bm [label = "Calculation\nResults"]
     neo_bm -> sf [label = "Bonus\nReports"];
-    neo_cm -> neo_bd_cm [label = "Conditions"];
-    neo_cm -> neo_alfa_core [label = "Conditions"];
+    neo_cm -> neo_bd_cm [label = "Terms &\nConditions"];
+    neo_cm -> neo_alfa_core [label = "Terms &\nConditions"];
 
     neo_db -> neo_bd_db_logs [label = "Decision\nBox Logs"];
     neo_bd_db_logs -> scb_dp [label = "Decision\nBox Logs"];
+    neo_bd_ndl -> scb_dp [label = "EAEG\nReports"];
 
     neo_alfa_core -> neo_alfa_payments_connector;
     neo_alfa_core -> scb_inspire;
     neo_alfa_core -> scb_cuco;
     scb_cuco -> scb_cuco_db;
     neo_alfa_core -> scb_people;
-    neo_alfa_core -> neo_alfa_ods;
+    neo_alfa_core -> neo_alfa_ods [label = < <B>Core DB Sync</B> >, penwidth = 3, fontsize = 22];
     neo_alfa_core -> scb_rife;
     scb_rife -> ptn_propileo [label="Accounting\nInformation"];
     scb_rife -> scb_bd [label="Insurance\nInformation"];
@@ -170,11 +172,10 @@ digraph graph_name {
     ptn_payments  -> neo_alfa_payments_connector [label = "Rejections"];
     neo_alfa_payments_connector -> neo_alfa_core [label = "Rejections"];
 
-    neo_alfa_ods -> neo_bd_ods [label = "ODS Extract"];
-    neo_bd_ods -> scb_bd [label = "ODS Extract"];
-    neo_bd_ods -> scb_dp;
-
-    scb_bd -> scb_cpl;
+    neo_alfa_ods -> neo_bd_ods [label = < <B>ODS Extract</B> >, penwidth = 3, fontsize = 22];
+    neo_bd_ods -> scb_bd [label = < <B>ODS Extract</B> >, penwidth = 3, fontsize = 22];
+    neo_bd_ods -> scb_dp [label = < <B>ODS Extract</B> >, penwidth = 3, fontsize = 22];
+    scb_bd -> scb_cpl [label = < <B>ODS Extract</B> >, penwidth = 3, fontsize = 22];
     scb_bd -> scb_dp;
     scb_bd -> scb_people;
     scb_bd -> neo_bd_schufa [label = "Schufa Scores"];
